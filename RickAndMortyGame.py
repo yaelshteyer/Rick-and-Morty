@@ -28,6 +28,8 @@ def generate_q_gameA(df):
 def generate_q_gameB(df):
     line_number = random.randint(0,LENGTH)
     line = df.iloc[line_number]
+
+    name = line["name"]
     
     line = line["line"].strip().split()
     line_length = len(line)
@@ -42,6 +44,8 @@ def generate_q_gameB(df):
         else:
             question += "______"
         question += " "
+    question += "\n- " + name
+    
     answer = line.pop(random_index).strip().lower()
 
     return (question, answer)
@@ -74,6 +78,7 @@ while playing:
         inp = input("\nWho said it?\n")
         
         check_answer(inp, answer)
+        
     elif game == "b":
         (question, answer) = generate_q_gameB(df)
 
